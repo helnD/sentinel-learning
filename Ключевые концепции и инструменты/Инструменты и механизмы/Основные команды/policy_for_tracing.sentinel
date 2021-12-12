@@ -1,0 +1,15 @@
+days = [
+	{"weekday": "Sunday", "weather": "clouds"},
+	{"weekday": "Monday", "weather": "rain"},
+	{"weekday": "Tuesday", "weather": "sunny"},
+	{"weekday": "Wednesday", "weather": "sunny"},
+	{"weekday": "Thursday", "weather": "clouds"},
+	{"weekday": "Friday", "weather": "rain"},
+	{"weekday": "Saturday", "weather": "sunny"},
+]
+
+main = rule {
+	filter days as d {
+		d.weather is not "sunny"
+	}
+}
