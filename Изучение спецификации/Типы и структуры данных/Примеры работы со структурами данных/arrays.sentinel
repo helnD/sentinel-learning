@@ -1,0 +1,25 @@
+matrix = [[1, 2, 3]]
+append(matrix, [2, 1, 2])
+append(matrix, [3] + [2] + [1])
+
+# Matrix have element 4.
+matrix_have_4 = rule {
+    any matrix as row { row contains 4 }
+}
+
+#Matrix have negative values.
+matrix_has_only_negative_values = rule {
+    all matrix as row { any row as element { element < 0 } }
+}
+
+# Number of rows more than 10.
+matrix_length_more_than_10 = rule {
+    length(matrix) > 10
+}
+
+# Abstract rule for matrix.
+main = rule {
+    matrix_have_4 or 
+    matrix_has_only_negative_values or 
+    matrix_length_more_than_10
+}

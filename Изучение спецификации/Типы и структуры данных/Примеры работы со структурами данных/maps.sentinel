@@ -1,0 +1,11 @@
+
+actors = [ { "name": "Keanu", "surname": "Reeves", "age": 57 }, { "name": "Al", "surname": "Pacino", "age": 81 }, { "name": "Willem", "surname": "Dafoe", "age": 66 } ]
+
+actors[0]["movies"] = ["Matrix 1-3", "Devil's Advocate", "Speed", "John Wick"]
+actors[1]["movies"] = ["The Godfather", "Devil's Advocate", "Dog Day Afternoon"]
+actors[2]["movies"] = ["Spider-Man", "Speed 2: Cruise Control", "Siberia"]
+
+devils_advocate_actors = filter actors as actor { actor.movies contains "Devil's Advocate" }
+
+# There are devil's advocate actors.
+main = rule { length(devils_advocate_actors) > 0 }

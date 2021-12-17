@@ -1,0 +1,13 @@
+
+your_money_in_dollars = 100.0
+year_of_birthday = 1955
+where_are_you_from = "Seattle"
+have_you_own_company = false
+
+# Are you Bill Gates?
+main = rule {
+    your_money_in_dollars >= 10000000 and
+    where_are_you_from == "Seattle" and
+    year_of_birthday is 1955 and
+    have_you_own_company
+}
