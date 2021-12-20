@@ -1,0 +1,24 @@
+param array
+
+copy_list = func(arr) {
+    return map arr as element { element }
+}
+
+sorted = func(arr) {
+    sorted_array = copy_list(arr)
+    indexes = range(length(sorted_array) - 1) 
+
+    for indexes as i {
+        for indexes as j {
+            if sorted_array[j] > sorted_array[j + 1] {
+                temp = sorted_array[j]
+                sorted_array[j] = sorted_array[j + 1]
+                sorted_array[j + 1] = temp
+            }
+        }
+    }
+
+    return sorted_array
+}
+
+main = rule { array is sorted(array) }

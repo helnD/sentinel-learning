@@ -1,0 +1,74 @@
+
+param array
+param element
+
+copy_list = func(arr) {
+    return map arr as element { element }
+}
+
+merge = func(array1, array2) {
+    index1 = 0
+    index2 = 0
+    length1 = length(array1)
+    length2 = length(array2)
+    merged_array = []
+    indexes = range(length1 + length(array2))
+
+    for indexes as x {
+        if index1 < length1 and (index2 == length2 or array1[index1] < array2[index2]) {
+            append(merged_array, array1[index1])
+            index1 += 1
+        } else {
+            append(merged_array, array2[index2])
+            index2 += 1
+        }
+    }
+
+    return merged_array
+}
+
+merge_sort = func(source_array) {
+    array = copy_list(source_array)
+    array_length = length(array)
+
+    if array_length <= 1 {
+        return array
+    }
+
+    half = int(array_length / 2)
+    print(array[:half], array[half:])
+    left = merge_sort(array[:half])
+    right = merge_sort(array[half:])
+
+    return merge(left, right)
+}
+
+binary_search = func(array, element) {
+    array_length = length(array)
+    
+    case {
+        when array_length == 1 and array[0] == element:
+            return element
+        when array_length == 1 and array[0] != element:
+            return null
+        when array_length == 0:
+            return null
+    }
+
+    half = int(array_length / 2)
+    from_left = binary_search(array[:half], element)
+    if from_left != null {
+        return from_left
+    }
+
+    from_right = binary_search(array[half:], element)
+    if from_right != null {
+        return from_right
+    }
+
+    return null
+}
+
+main = rule {
+    binary_search(array, element) != null
+}
