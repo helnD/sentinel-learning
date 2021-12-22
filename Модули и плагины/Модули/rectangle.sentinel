@@ -1,0 +1,68 @@
+create_rectangle = func(x, y, width, height) {
+    return [x, y, width, height]
+}
+
+area = func(rectangle) {
+    height = rectangle[2]
+    width = rectangle[3]
+
+    return height * width
+}
+
+perimetr = func(rectangle) {
+    height = rectangle[2]
+    width = rectangle[3]
+
+    return (height + width) * 2
+}
+
+move = func(rectangle, x_move, y_move) {
+    x = rectangle[0]
+    y = rectangle[1]
+    height = rectangle[2]
+    width = rectangle[3]
+
+    return [x + x_move, y + y_move, width, height]
+}
+
+are_intersected = func(rectangle_one, rectangle_two) {
+    x_left_one = rectangle_one[0]
+    y_top_one = rectangle_one[1]
+    x_right_one = x_left_one + rectangle_one[2]
+    y_bottom_one = y_top_one - rectangle_one[3]
+
+    x_left_two = rectangle_two[0]
+    y_top_two = rectangle_two[1]
+    x_right_two = x_left_two + rectangle_two[2]
+    y_bottom_two = y_top_two - rectangle_two[3]
+
+    diff_x = 0
+    if x_left_one < x_left_two {
+        diff_x = x_right_two - x_left_one
+    } else {
+        diff_x = x_right_one - x_left_two
+    }
+
+    diff_y = 0
+    if y_top_one < y_top_two {
+        diff_y = y_top_two - y_bottom_one
+    } else {
+        diff_y = y_top_one - y_bottom_two
+    }
+
+    sum_of_height = rectangle_one[2] + rectangle_two[2]
+    sum_of_width = rectangle_one[3] + rectangle_two[3]
+
+    return sum_of_height >= diff_y and sum_of_width >= diff_x
+}
+
+print_rectange = func(rectangle) {
+    print_array = []
+    append(print_array, "x: " + string(rectangle[0]))
+    append(print_array, "y: " + string(rectangle[1]))
+    append(print_array, "width: " + string(rectangle[2]))
+    append(print_array, "height: " + string(rectangle[3]))
+    print(print_array)
+    print("area: " + string(area(rectangle)))
+    print("perimeter: " + string(perimetr(rectangle)))
+}
